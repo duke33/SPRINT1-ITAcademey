@@ -1,0 +1,22 @@
+{
+  "name": "sprint1-itacademey",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duke33/SPRINT1-ITAcademey.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/duke33/SPRINT1-ITAcademey/issues"
+  },
+  "homepage": "https://github.com/duke33/SPRINT1-ITAcademey#readme",
+  "devDependencies": {
+    "eslint": "^8.1.0"
+  }
+}
