@@ -21,7 +21,7 @@ const getEmployee = (employeesArray, id) => {
         if (employeeFound) {
             resolve(employeeFound)
         } else {
-            reject(new Error('promise rejected')) //TODO acomodar esto new error?
+            reject(new Error('promise rejected'))
         }
     })
 
