@@ -81,5 +81,4 @@ getSalary(salaries, 3).then((result) => console.log(result)).catch(() => { conso
 //Nivel 2 - Ejercicio 3 Invoca la primera función getEmployee y después getSalary anidando la ejecución de las dos promises.
 //*************** Algo esta mal en el enunciado, probablemete en lugar de anidar diga negar, como reject the promise
 console.log('Nivel 2 Ejercicio 3-------------------------------------------');
-getEmployee(employees, 100).then((result) => console.log(result)).catch(() => { console.log('rejection caught') })
-getSalary().then((result) => console.log(result)).catch(() => { console.log('rejection caught') })
+getEmployee(employees, 100).then(getSalary(salaries, 100)).catch((e) => { console.log(e) })
