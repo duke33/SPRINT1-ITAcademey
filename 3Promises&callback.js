@@ -52,7 +52,7 @@ const getEmployee = (employeesArray, id) => {
         const employeeFound = employeesArray.find(element => element.id === id);
 
         if (employeeFound) {
-            resolve(employeeFound.name)
+            resolve(employeeFound)
         } else {
             reject(console.log('promise rejected')) //TODO acomodar esto new error?
         }
@@ -60,10 +60,10 @@ const getEmployee = (employeesArray, id) => {
 
 }
 
-const getSalary = (salariesArray, id) => {
+const getSalary = (salariesArray, employee) => {
     return new Promise((resolve, reject) => {
 
-        const salaryFound = salariesArray.find(element => element.id === id);
+        const salaryFound = salariesArray.find(element => element.id === employee.id);
 
         if (salaryFound) {
             resolve(salaryFound.salary)
