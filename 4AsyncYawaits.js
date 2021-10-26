@@ -1,6 +1,3 @@
-//Nivel 2 - Ejercicio 1 Dados los objetos employees y Salas, crea una arrow function getEmployee que devuelva una Promise efectuando la búsqueda en el objeto por su id. 
-//Nivel 2 - Ejercicio 2 Crea otra arrow function getSalary que reciba como parámetro un objeto employee y devuelva su salario.
-
 let employees = [{
     id: 1,
     name: 'Linux Torvalds'
@@ -12,6 +9,9 @@ let employees = [{
     name: 'Mandrake'
 }];
 let salaries = [{ id: 1, salary: 4000 }, { id: 2, salary: 1000 }, { id: 3, salary: 2000 }]
+
+// Nivel 1- Ejercicio 1
+// Dados los objetos employees y salaries, crea una arrow function getEmployee que devuelva una Promise efectuando la búsqueda en el objeto por su id. Crea otra arrow function getSalary que reciba como parámetro un objeto employee y devuelva su salario.
 
 const getEmployee = (employeesArray, id) => {
     return new Promise((resolve, reject) => {
@@ -41,22 +41,19 @@ const getSalary = (salariesArray, employee) => {
 
 }
 
+// Nivel 1- Ejercicio 2 Crea una función asíncrona que reciba un id de empleado e imprima por pantalla el nombre del empleado y su salario, usando las funciones que has definido en el ejercicio anterior.
 
-getEmployee(employees, 3).then((result) => console.log("Result of calling getEmployee(employees, 3): ", result)).catch((e) => { console.log(e) })
-getSalary(salaries, employees[0]).then((result) => console.log("Result of calling getSalary(salaries, employees[0]): ", result)).catch((e) => { console.log(e) })
+const nameAndSalary = async(id, employeesArray, salariesArray) => {
+    try {
+        const employeeFound = await getEmployee(employeesArray, id)
+        const salaryFound = await getSalary(salariesArray, employeeFound)
+        const outoput = {
+            name: employeeFound.name,
+            salary: salaryFound
+        }
 
-//Nivel 2 - Ejercicio 3 Invoca la primera función getEmployee y después getSalary anidando la ejecución de las dos promises.
-getEmployee(employees, 1).then((result) => getSalary(salaries, result)).then((result2) => console.log("Chained promises result: ", result2)).catch((e) => { console.log(e) })
-const employeeFound = await getEmployee(employeesArray, id)
-const salaryFound = await getSalary(salariesArray, employeeFound)
-const outoput = {
-    name: employeeFound.name,
-    salary: salaryFound
-}
-
-console.log(outoput)
-}
-catch { error => console.log(error.message) }
+        console.log(outoput)
+    } catch { error => console.log(error.message) }
 }
 nameAndSalary(1, employees, salaries)
 

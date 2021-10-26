@@ -46,4 +46,5 @@ getEmployee(employees, 3).then((result) => console.log("Result of calling getEmp
 getSalary(salaries, employees[0]).then((result) => console.log("Result of calling getSalary(salaries, employees[0]): ", result)).catch((e) => { console.log(e) })
 
 //Nivel 2 - Ejercicio 3 Invoca la primera función getEmployee y después getSalary anidando la ejecución de las dos promises.
+//Nivel 3 - Ejercicio 1 Fija un elemento catch en la invocación del nivel anterior que capture cualquier error y lo muestre por la consola.
 getEmployee(employees, 1).then((result) => getSalary(salaries, result)).then((result2) => console.log("Chained promises result: ", result2)).catch((e) => { console.log(e) })
