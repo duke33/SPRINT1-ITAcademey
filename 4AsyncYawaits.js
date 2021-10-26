@@ -63,6 +63,7 @@ nameAndSalary(1, employees, salaries)
 /*
 PREGUNTA para OMAR, tiene algun sentido en la siguiente funcion, usar reject? No entiendo como se podria implementar!!
 */
+// eslint-disable-next-line no-unused-vars
 const myPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve(console.log('Boooo!'));
