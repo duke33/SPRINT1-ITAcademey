@@ -32,7 +32,6 @@ fun2(false, callback)
 
 //Nivel 2 - Ejercicio 1 Dados los objetos employees y Salas, crea una arrow function getEmployee que devuelva una Promise efectuando la búsqueda en el objeto por su id. 
 //Nivel 2 - Ejercicio 2 Crea otra arrow function getSalary que reciba como parámetro un objeto employee y devuelva su salario.
-console.log('Nivel 2 Ejercicio 1 y 2-------------------------------------------');
 
 let employees = [{
     id: 1,
@@ -54,7 +53,7 @@ const getEmployee = (employeesArray, id) => {
         if (employeeFound) {
             resolve(employeeFound)
         } else {
-            reject(console.log('promise rejected')) //TODO acomodar esto new error?
+            reject(new Error('promise rejected')) //TODO acomodar esto new error?
         }
     })
 
@@ -68,17 +67,15 @@ const getSalary = (salariesArray, employee) => {
         if (salaryFound) {
             resolve(salaryFound.salary)
         } else {
-            reject(console.log('promise rejected'))
+            reject(new Error('promise rejected'))
         }
     })
 
 }
 
 
-getEmployee(employees, 3).then((result) => console.log(result)).catch(() => { console.log('rejection caught') })
-getSalary(salaries, 3).then((result) => console.log(result)).catch(() => { console.log('rejection caught') })
+getEmployee(employees, 3).then((result) => console.log("Result of calling getEmployee(employees, 3): ", result)).catch((e) => { console.log(e) })
+getSalary(salaries, employees[0]).then((result) => console.log("Result of calling getSalary(salaries, employees[0]): ", result)).catch((e) => { console.log(e) })
 
 //Nivel 2 - Ejercicio 3 Invoca la primera función getEmployee y después getSalary anidando la ejecución de las dos promises.
-//*************** Algo esta mal en el enunciado, probablemete en lugar de anidar diga negar, como reject the promise
-console.log('Nivel 2 Ejercicio 3-------------------------------------------');
-getEmployee(employees, 100).then(getSalary(salaries, 100)).catch((e) => { console.log(e) })
+getEmployee(employees, 1).then((result) => getSalary(salaries, result)).then((result2) => console.log("Chained promises result: ", result2)).catch((e) => { console.log(e) })
