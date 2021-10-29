@@ -8,15 +8,15 @@ printName("Mariano")
 
 //Nivel 2 Ejercicio 1 y 2 Muestra por consola el nombre y apellidos del usuario mediante template literales, guardándolos en variables y referenciándolas en la impresión del mensaje. Invoca una función que devuelva un valor mediante template literales.
 console.log('Nivel 2 Ejercicio 1 y 2-------------------------------------------')
-
 const firstName = "Mariano"
 const lastName = "Farace"
 
+
 const firstAndLastName = (firstNameArg, lastNameArg) => {
-    console.log(`First name is ${firstNameArg}, last name is ${lastNameArg}`)
+    return (`First name is ${firstNameArg}, last name is ${lastNameArg}`)
 }
 
-firstAndLastName(firstName, lastName)
+console.log(`${firstAndLastName(firstName, lastName)}`)
 
 //Nivel 3 Ejercicio 1 Crea una matriz de diez funciones y rellena mediante un bucle de forma que cada función cuente del 0 al 9 para la consola. Invoca cada función del array iterativamente. Deberá mostrarse por consola la cuenta del 0 al 9 diez veces.
 console.log('Nivel 3 Ejercicio 1-------------------------------------------')
