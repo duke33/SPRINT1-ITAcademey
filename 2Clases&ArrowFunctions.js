@@ -2,9 +2,10 @@
 // Muestra para la consola el resultado de una arrow function autoinvocable que sume dos números.
 console.log('Nivel 1 Ejercicio 1-------------------------------------------');
 
-((num1, num2) => {
-    console.log((num1 + num2))
+let suma = ((num1, num2) => {
+    return num1 + num2
 })(5, 6);
+console.log('suma: ', suma)
 
 //Nivel 2 Ejercicio 1
 // Crea una arrow function que, recibiendo un parámetro, devuelva un objeto con un atributo que tenga como valor el parámetro recibido.
