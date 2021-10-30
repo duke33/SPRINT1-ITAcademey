@@ -79,3 +79,12 @@ const asyncCaller = async(aPromise) => {
     } catch (e) { console.log(e.message) }
 }
 asyncCaller(myPromise)
+
+
+module.exports = {
+    getEmployee,
+    getSalary,
+    employees,
+    salaries,
+    asyncCaller
+}
