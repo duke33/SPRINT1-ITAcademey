@@ -53,7 +53,9 @@ const nameAndSalary = async(id, employeesArray, salariesArray) => {
         }
 
         console.log(outoput)
-    } catch { error => console.log(error.message) }
+
+    } catch (e) { console.log(e.message) }
+
 }
 nameAndSalary(1, employees, salaries)
 
@@ -66,12 +68,14 @@ PREGUNTA para OMAR, tiene algun sentido en la siguiente funcion, usar reject? No
 // eslint-disable-next-line no-unused-vars
 const myPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
-        resolve(console.log('Boooo!'));
+        resolve('Boooo!');
     }, 2000);
 });
 
 const asyncCaller = async(aPromise) => {
-
-    return await aPromise
+    try {
+        const response = await aPromise
+        console.log(response)
+    } catch (e) { console.log(e.message) }
 }
-asyncCaller(myPromise).catch(error => console.log(error.message))
+asyncCaller(myPromise)
