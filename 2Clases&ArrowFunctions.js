@@ -41,31 +41,17 @@ console.log('Nivel 3 Ejercicio 1-------------------------------------------');
 function Empleado() {
     this.empName = "empName";
     if (this.constructor === Empleado) {
-        throw new Error("You cannot create an instance of     Abstract Class");
+        throw new Error("You cannot create an instance of an Abstract Class");
     }
 }
 
-//Metodo  de la clase abstracta
-Empleado.prototype.display = function() {
-    return "Employee name is: " + this.empName;
+const createI = () => {
+    return (Object.create(Empleado.prototype, { constructor: { value: Empleado } }))
 }
 
-//Subclase1
-function Freelancer(fullName) {
-    this.empName = fullName;
-}
+const I1 = createI()
+const I2 = createI()
 
-function ComunityManager(fullName) {
-    this.empName = fullName;
-}
-//Extendiendo las subclases
-Freelancer.prototype = Object.create(Empleado.prototype);
-ComunityManager.prototype = Object.create(Empleado.prototype);
-
-//Instanciando
-
-const freenlacer = new Freelancer("Roberto Gomez")
-const comMan = new ComunityManager("Daniel Perez")
-
-console.log(freenlacer.display())
-console.log(comMan.display())
+console.log('i1: ', I1)
+console.log('i2: ', I2)
+console.log('typeof I1 & I2:', typeof I1, "&", typeof I2)
