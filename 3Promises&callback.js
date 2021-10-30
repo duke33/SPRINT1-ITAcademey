@@ -5,26 +5,25 @@ console.log('Nivel 1 Ejercicio 1-------------------------------------------');
 
 const fun = (boolean) => new Promise((resolve, reject) => {
     if (boolean) {
-        resolve(console.log('promise resolved'))
+        resolve('promise resolved')
     } else {
         reject(new Error('promise rejected'))
     }
 })
 
-fun(true) //promise resolved
-fun(false).catch((e) => { console.log(e.message) }) //promise rejected 
+fun(true).then(r => console.log(r))
+fun(false).catch((e) => { console.log(e.message) }) //promise rejected
 
 //Nivel 1 - Ejercicio 2 Crea una arrow function que reciba un parámetro y una función callback y le pase a la función un mensaje u otro (que se imprimirá para consola) en función del parámetro recibido.
 console.log('Nivel 1 Ejercicio 2-------------------------------------------');
 
-const callback = (y) => {
-    if (y) {
-        console.log('value is true')
-    } else { console.log('value is false') }
+const callback = (message) => {
+    console.log(message)
 }
 
 const fun2 = (x, callback) => {
-    callback(x)
+    let callbackMessage = x ? "Argument was true" : "Argument was false"
+    callback(callbackMessage)
 }
 
 fun2(true, callback)
@@ -45,10 +44,10 @@ let employees = [{
 }];
 let salaries = [{ id: 1, salary: 4000 }, { id: 2, salary: 1000 }, { id: 3, salary: 2000 }]
 
-const getEmployee = (employeesArray, id) => {
+const getEmployee = (id) => {
     return new Promise((resolve, reject) => {
 
-        const employeeFound = employeesArray.find(element => element.id === id);
+        const employeeFound = employees.find(element => element.id === id);
 
         if (employeeFound) {
             resolve(employeeFound)
@@ -59,10 +58,10 @@ const getEmployee = (employeesArray, id) => {
 
 }
 
-const getSalary = (salariesArray, employee) => {
+const getSalary = (employee) => {
     return new Promise((resolve, reject) => {
 
-        const salaryFound = salariesArray.find(element => element.id === employee.id);
+        const salaryFound = salaries.find(element => element.id === employee.id);
 
         if (salaryFound) {
             resolve(salaryFound.salary)
@@ -73,10 +72,9 @@ const getSalary = (salariesArray, employee) => {
 
 }
 
-
-getEmployee(employees, 3).then((result) => console.log("Result of calling getEmployee(employees, 3): ", result)).catch((e) => { console.log(e) })
-getSalary(salaries, employees[0]).then((result) => console.log("Result of calling getSalary(salaries, employees[0]): ", result)).catch((e) => { console.log(e) })
-
 //Nivel 2 - Ejercicio 3 Invoca la primera función getEmployee y después getSalary anidando la ejecución de las dos promises.
 //Nivel 3 - Ejercicio 1 Fija un elemento catch en la invocación del nivel anterior que capture cualquier error y lo muestre por la consola.
-getEmployee(employees, 1).then((result) => getSalary(salaries, result)).then((result2) => console.log("Chained promises result: ", result2)).catch((e) => { console.log(e) })
+getEmployee(1)
+    .then(employee => getSalary(employee))
+    .then(result2 => console.log("Chained promises result: ", result2))
+    .catch(e => console.log(e))
