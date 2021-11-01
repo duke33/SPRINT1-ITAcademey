@@ -4,7 +4,8 @@
     "description": "",
     "main": "app.js",
     "scripts": {
-        "test": "jest --verbose --runInBand"
+        "test": "jest --verbose --runInBand",
+        "watch": "clear && jest --watch --verbose --runInBand 6Testitng.test.js"
     },
     "repository": {
         "type": "git",
