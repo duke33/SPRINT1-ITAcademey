@@ -55,3 +55,6 @@ const I2 = createI()
 console.log('i1: ', I1)
 console.log('i2: ', I2)
 console.log('typeof I1 & I2:', typeof I1, "&", typeof I2)
+
+
+module.exports = { Persona }
