@@ -78,3 +78,9 @@ getEmployee(1)
     .then(employee => getSalary(employee))
     .then(result2 => console.log("Chained promises result: ", result2))
     .catch(e => console.log(e))
+
+
+module.exports = {
+    getEmployee,
+    getSalary
+}
