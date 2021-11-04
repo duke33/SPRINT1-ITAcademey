@@ -43,21 +43,22 @@ const getSalary = (salariesArray, employee) => {
 
 // Nivel 1- Ejercicio 2 Crea una función asíncrona que reciba un id de empleado e imprima por pantalla el nombre del empleado y su salario, usando las funciones que has definido en el ejercicio anterior.
 
+// eslint-disable-next-line no-unused-vars
 const nameAndSalary = async(id, employeesArray, salariesArray) => {
-    try {
-        const employeeFound = await getEmployee(employeesArray, id)
-        const salaryFound = await getSalary(salariesArray, employeeFound)
-        const outoput = {
-            name: employeeFound.name,
-            salary: salaryFound
-        }
+        try {
+            const employeeFound = await getEmployee(employeesArray, id)
+            const salaryFound = await getSalary(salariesArray, employeeFound)
+            const outoput = {
+                name: employeeFound.name,
+                salary: salaryFound
+            }
 
-        console.log(outoput)
+            console.log(outoput)
 
-    } catch (e) { console.log(e.message) }
+        } catch (e) { console.log(e.message) }
 
-}
-nameAndSalary(1, employees, salaries)
+    }
+    //nameAndSalary(1, employees, salaries)
 
 
 //Nivel 2- Ejercicio 1 Crea una nueva función asíncrona que llame a otra que devuelva una Promise que efectúe su función resolve() después de 2 segundos de su invocación.
@@ -70,15 +71,19 @@ const myPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve('Boooo!');
     }, 2000);
+    reject(new Error('Rejected for testing'))
 });
 
 const asyncCaller = async(aPromise) => {
-    try {
-        const response = await aPromise
-        console.log(response)
-    } catch (e) { console.log(e.message) }
-}
-asyncCaller(myPromise)
+        if (!aPromise) {
+            throw new Error("No argument provided")
+        }
+        try {
+            const response = await aPromise
+            console.log(response)
+        } catch (e) { console.log(e.message) }
+    }
+    //asyncCaller(myPromise)
 
 
 module.exports = {
@@ -86,5 +91,6 @@ module.exports = {
     getSalary,
     employees,
     salaries,
-    asyncCaller
+    asyncCaller,
+    myPromise
 }
