@@ -71,14 +71,11 @@ const myPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve('Boooo!');
     }, 2000);
-    reject(new Error('Rejected for testing'))
 });
 
 const asyncCaller = async(aPromise) => {
-        if (!aPromise) {
-            throw new Error("No argument provided")
-        }
         try {
+            if (aPromise === "undefined") { throw new Error("Quiero pasar al siguiente modulo") }
             const response = await aPromise
             console.log(response)
         } catch (e) { console.log(e.message) }
