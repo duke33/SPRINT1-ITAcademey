@@ -14,6 +14,7 @@ const {
     asyncCaller,
     myPromise
 } = require('./4AsyncYawaits')
+
 const { Persona } = require("./2Clases&ArrowFunctions")
 const { sumar, restar, multiplicar, dividir } = require("./6TestingUtils")
 const funFromPandC = require("./3Promises&callback")
@@ -102,13 +103,15 @@ describe('The rest of the exercises ', () => {
     //Verifica mediante tests la ejecución del ejercicio Async/Await Nivel 2 Ejercicio 1 utilizando Jest Fake Timers
     test('should invoke callback after timer ends', async() => {
 
+        const toPrint = "Imprime despues de 2 segundos"
+
         // Enable mocking of native timer functions
         jest.useFakeTimers();
 
         const consoleSpy2 = jest.spyOn(console, 'log');
 
         // await asyncCaller(myPromise) Tampoco funciona, porque resuelve la promesa como se espearia si yo no estuviera controlando los timers
-        asyncCaller(myPromise)
+        await asyncCaller(toPrint)
 
         // The callback should not have been called yet                                
         expect(consoleSpy2).not.toHaveBeenCalled();
@@ -123,7 +126,7 @@ describe('The rest of the exercises ', () => {
 
 
         // Assert successfully without having to wait for the 10 second delay
-        expect(consoleSpy2).toHaveBeenCalledWith("Boooo!")
+        expect(consoleSpy2).toHaveBeenCalledWith(toPrint)
     });
 
 })

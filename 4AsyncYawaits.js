@@ -64,16 +64,17 @@ const nameAndSalary = async(id, employeesArray, salariesArray) => {
 //Nivel 2- Ejercicio 1 Crea una nueva función asíncrona que llame a otra que devuelva una Promise que efectúe su función resolve() después de 2 segundos de su invocación.
 
 // eslint-disable-next-line no-unused-vars
-const myPromise = (toPrint) => new Promise((resolve, reject) => {
-    setTimeout(() => {
-        if (toPrint) { resolve('Boooo!'); } else { reject("toPrint arg missing") }
-    }, 2000);
-});
+const myPromise = (toPrint) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (toPrint) { resolve(toPrint); } else { reject("toPrint arg missing") }
+        }, 2000);
+    })
+}
 
-const asyncCaller = async(aPromise, toPrint) => {
+const asyncCaller = async(toPrint) => {
         try {
-            if (aPromise === "undefined") { throw new Error("Quiero pasar al siguiente modulo") }
-            const response = await aPromise(toPrint)
+            const response = await myPromise(toPrint)
             console.log(response)
         } catch (e) { console.log(e.message) }
     }
