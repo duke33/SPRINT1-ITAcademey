@@ -73,12 +73,13 @@ const myPromise = (toPrint) => {
 }
 
 const asyncCaller = async(toPrint) => {
-        try {
-            const response = await myPromise(toPrint)
-            console.log(response)
-        } catch (e) { console.log(e.message) }
-    }
-    //asyncCaller(myPromise)
+    if (typeof toPrint === "number") { throw new Error("Argument is a number") }
+    try {
+        const response = await myPromise(toPrint)
+        console.log(response)
+    } catch (e) { console.log(e.message) }
+}
+
 
 
 module.exports = {
