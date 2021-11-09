@@ -110,7 +110,6 @@ describe('The rest of the exercises ', () => {
 
         const consoleSpy2 = jest.spyOn(console, 'log');
 
-        // await asyncCaller(myPromise) Tampoco funciona, porque resuelve la promesa como se espearia si yo no estuviera controlando los timers
         asyncCaller(toPrint)
 
         // The callback should not have been called yet                                
@@ -122,9 +121,9 @@ describe('The rest of the exercises ', () => {
         // ─╠╣
         // ─╚╝
         // Fast-forward until all timers have been executed
-        jest.runAllTimers(); //Deberia hacer transcurrir los segundos necesarios para el timer pase y asynCaller haga lo que tiene que hacer, sin embargo por consola puedo ver que  "Number of calls: 0"
+        jest.runAllTimers(); //Deberia hacer transcurrir los segundos necesarios para que el timer pase y asynCaller haga lo que tiene que hacer, sin embargo por consola puedo ver que  "Number of calls: 0" y tambien puedo ver que efectivamente imprime por consola lo que tiene que imprimir. Pareciera que el spy esta fallando
 
-        // Assert successfully without having to wait for the 10 second delay
+        // Assert successfully without having to wait for the 2 second delay
         expect(consoleSpy2).toHaveBeenCalledWith(toPrint)
     });
 
