@@ -103,7 +103,7 @@ describe('The rest of the exercises ', () => {
     //Verifica mediante tests la ejecución del ejercicio Async/Await Nivel 2 Ejercicio 1 utilizando Jest Fake Timers
     test('should invoke callback after timer ends', async() => {
 
-        const toPrint = "Imprime despues de 2 segundos"
+        const toPrint = "Prints after 2 seconds"
 
         // Enable mocking of native timer functions
         jest.useFakeTimers();
@@ -111,7 +111,7 @@ describe('The rest of the exercises ', () => {
         const consoleSpy2 = jest.spyOn(console, 'log');
 
         // await asyncCaller(myPromise) Tampoco funciona, porque resuelve la promesa como se espearia si yo no estuviera controlando los timers
-        await asyncCaller(toPrint)
+        asyncCaller(toPrint)
 
         // The callback should not have been called yet                                
         expect(consoleSpy2).not.toHaveBeenCalled();
@@ -122,8 +122,7 @@ describe('The rest of the exercises ', () => {
         // ─╠╣
         // ─╚╝
         // Fast-forward until all timers have been executed
-        jest.runAllTimers(); //Deberia hacer transcurrir los segundos necesarios para el timer pase y asynCaller haga lo que tiene que hacer, sin embargo por consola puedo ver que la promesa no se ha resuelto para cuando termina el test.
-
+        jest.runAllTimers(); //Deberia hacer transcurrir los segundos necesarios para el timer pase y asynCaller haga lo que tiene que hacer, sin embargo por consola puedo ver que  "Number of calls: 0"
 
         // Assert successfully without having to wait for the 10 second delay
         expect(consoleSpy2).toHaveBeenCalledWith(toPrint)
@@ -223,11 +222,11 @@ describe('Nivel 3 Parte 1', () => {
 
 describe('Nivel 3 Parte 2', () => {
 
-    test('force error by passing no argument', async() => {
+    test('force error by passing number argument', async() => {
 
-        //No le estoy pasando argumento, tendria que tirar error, se que la funcion asyncCaller esta tirando el error y el catch de asyncCaller lo esta logueando por consola por su nombre, sin embargo no lo estoy pudiendo cojer aqui en el test. No se que hacer ya.
+        //Le estoy pasando un numero como argumento, tendria que tirar error, se que la funcion asyncCaller esta tirando el error y el catch de asyncCaller lo esta logueando por consola por su nombre,( UnhandledPromiseRejectionWarning: Error: Argument is a number), ademas el test assertions(1) pasa, sin embargo no lo estoy pudiendo cojer aqui en el test. No se que hacer ya.
         expect.assertions(1); //al menos detecta que hay una assertion
-        expect(async() => (await asyncCaller())).toThrow("Quiero pasar al siguiente modulo");
+        expect(async() => (await asyncCaller(2))).toThrow("Argument is a number");
     });
 
 })
