@@ -63,20 +63,17 @@ const nameAndSalary = async(id, employeesArray, salariesArray) => {
 
 //Nivel 2- Ejercicio 1 Crea una nueva función asíncrona que llame a otra que devuelva una Promise que efectúe su función resolve() después de 2 segundos de su invocación.
 
-/*
-PREGUNTA para OMAR, tiene algun sentido en la siguiente funcion, usar reject? No entiendo como se podria implementar!!
-*/
 // eslint-disable-next-line no-unused-vars
-const myPromise = new Promise((resolve, reject) => {
+const myPromise = (toPrint) => new Promise((resolve, reject) => {
     setTimeout(() => {
-        resolve('Boooo!');
+        if (toPrint) { resolve('Boooo!'); } else { reject("toPrint arg missing") }
     }, 2000);
 });
 
-const asyncCaller = async(aPromise) => {
+const asyncCaller = async(aPromise, toPrint) => {
         try {
             if (aPromise === "undefined") { throw new Error("Quiero pasar al siguiente modulo") }
-            const response = await aPromise
+            const response = await aPromise(toPrint)
             console.log(response)
         } catch (e) { console.log(e.message) }
     }
