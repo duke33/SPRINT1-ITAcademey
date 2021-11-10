@@ -106,7 +106,7 @@ describe('The rest of the exercises ', () => {
         const toPrint = "Prints after 2 seconds"
 
         // Enable mocking of native timer functions
-        jest.useFakeTimers();
+        jest.useFakeTimers('legacy');
 
         const consoleSpy2 = jest.spyOn(console, 'log');
 

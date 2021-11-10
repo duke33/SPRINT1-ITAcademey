@@ -1,23 +1,13 @@
 const os = require('os');
-const { spawn } = require('child_process');
 const userFolder = os.homedir()
+const fsp = require('fs').promises;
 
 
-let dirFileList = () => {
-    const ls = spawn('ls', [userFolder]);
 
-    ls.stdout.on('data', (data) => {
-        console.log(`Folder name: ${userFolder} \nContent:\n${data}`);
-    });
-
-
-    ls.stderr.on('data', (data) => {
-        console.error(`stderr: ${data}`);
-    });
-
-    ls.on('close', (code) => {
-        console.log(`child process exited with code ${code}`);
-    });
+const dirFileList = async() => {
+    const result = await fsp.readdir(userFolder)
+    console.log(`Folder name: ${userFolder} \nContent:\n${result}`)
 }
+
 
 dirFileList()
