@@ -1,7 +1,7 @@
 const zlib = require('zlib');
 const fsp = require('fs').promises;
 const fs = require('fs');
-const { spawn } = require('child_process');
+const os = require('os');
 
 /*Nivel 1- Ejercicio 1
 Crea una función que imprima recursivamente un mensaje por la consola con demoras de un segundo. */
@@ -49,31 +49,14 @@ compressFile("fileTest.txt")
 
 /*Crea una función que liste por la consola el contenido del directorio de usuario del ordenador utilizando Node Child Processes.*/
 
-let dirFileList = () => {
-    const ls = spawn('ls', ['/usr']);
-
-    ls.stdout.on('data', (data) => {
-        console.log(`Folders:\n${data}`);
-    });
-
-
-    ls.stderr.on('data', (data) => {
-        console.error(`stderr: ${data}`);
-    });
-
-    ls.on('close', (code) => {
-        console.log(`child process exited with code ${code}`);
-    });
+const dirFileList = async() => {
+    const userFolder = os.homedir()
+    const result = await fsp.readdir(userFolder)
+    console.log(`Folder name: ${userFolder} \nContent:\n${result}`)
 }
+
 
 dirFileList()
-
-//Me gustaria entender que diferencia hay enetre hacerlo de una forma u otra.
-const dirFileList2 = async() => {
-    const result = await fsp.readdir("/usr")
-    console.log(result)
-}
-dirFileList2()
 
 /*Nivel 3
 - Ejercicio 1 
