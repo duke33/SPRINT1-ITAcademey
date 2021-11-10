@@ -8,7 +8,7 @@ const password = 'bncaskdbvasbvlaslslasfhj';
 let algorithm = 'aes-192-cbc';
 let salt = "GfG"
 const key = crypto.scryptSync(password, salt, 24);
-const iv = crypto.randomBytes(16)
+const iv = Buffer.from([69, 77, 20, 89, 15, 69, 66, 91, 11, 33, 33, 89, 25, 21, 79, 46]);
 
 /*El valor de iv deberia o hacerlo consante, o pasarlo junto con el contenido encriptado, ya que al ser generado aleatoriamente cada vez que    se corre el codigo, cambia, y la funcion que desencripta necesita saber el valor de alguna forma. Si se encripta y desencripta en la misma ejecucion del archivo no hay problema porque la funcion desencriptar va a tomar el mismo valor de iv que la funcion que encripta.
 Hice una forma chapucera de que funcionara añadiendolo al concatenandolo al contenido encriptado, despues haciendo slice en la funcion que desencript, pero como me cuesta trabajar con el objeto buffer tuve que poner muchos toString() y Buffer.from. Decidi dejarlo asi sin mas para que sea mas facil leer el codigo. Omar hazme saber si es necesario que haga alguna implementacion   */
@@ -49,6 +49,7 @@ const decryptData = async(filePath) => {
 
 encryptAndDelete("fileTest-base64.txt").then(() => decryptData("encrypted-fileTest-base64.txt"))
 encryptAndDelete("fileTest-hex.txt").then(() => decryptData("encrypted-fileTest-hex.txt"))
+encryptAndDelete("fileTest.txt").then(() => decryptData("encrypted-fileTest.txt"))
 
 
 
