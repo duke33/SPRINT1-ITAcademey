@@ -34,7 +34,7 @@ const encryptAndDelete = async(filePath) => {
 
 //Crea otra función que desencripte y descodifique los archivos del apartado anterior volviendo a generar una copia del inicial.
 
-const decryptData = async(filePath) => {
+const decryptAndDecodeData = async(filePath, decodeTo) => {
     try {
         const content = await fsp.readFile(filePath, 'utf-8')
         const buf = Buffer.from(content, 'hex');
@@ -43,13 +43,15 @@ const decryptData = async(filePath) => {
         let decrypted = decipher.update(buf, "hex", "utf-8")
         decrypted += decipher.final("utf-8")
 
-        await fsp.writeFile("decrypted-" + filePath.substring(10), decrypted)
+        const decoded = (Buffer.from(decrypted, decodeTo).toString('utf8'));
+
+        await fsp.writeFile("decrypted-" + filePath.substring(10), decoded)
     } catch (e) { console.log(e) }
 }
 
-encryptAndDelete("fileTest-base64.txt").then(() => decryptData("encrypted-fileTest-base64.txt"))
-encryptAndDelete("fileTest-hex.txt").then(() => decryptData("encrypted-fileTest-hex.txt"))
-encryptAndDelete("fileTest.txt").then(() => decryptData("encrypted-fileTest.txt"))
+encryptAndDelete("fileTest-base64.txt").then(() => decryptAndDecodeData("encrypted-fileTest-base64.txt","base64"))
+encryptAndDelete("fileTest-hex.txt").then(() => decryptAndDecodeData("encrypted-fileTest-hex.txt", 'hex'))
+encryptAndDelete("fileTest.txt").then(() => decryptAndDecodeData("encrypted-fileTest.txt", 'utf8'))
 
 
 
